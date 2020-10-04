@@ -51,7 +51,7 @@ public class Data {
     }
 
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "M/d/yy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
@@ -62,7 +62,7 @@ public class Data {
         }
         this.dateOfBirth = dob;
     }
-    @JsonCreator
+
     public Data(int id, String firstName, String lastName, String city, LocalDate dateOfBirth) {
         this.id = id;
         this.firstName = firstName;

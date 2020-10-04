@@ -20,7 +20,7 @@ public class Main {
 //      mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         try {
-            List<Data> data = Arrays.asList(mapper.readValue(Paths.get("C:\\data.json").toFile(), Data[].class));
+            List<Data> data = Arrays.asList(mapper.readValue(Paths.get("C:\\dataClients.json").toFile(), Data[].class));
 
             List<Data> age20to30 = data
                     .stream()
