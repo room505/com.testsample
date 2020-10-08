@@ -44,8 +44,7 @@ public class Main {
             map.put("age20To30", age20to30);
             map.put("cities", cities);
             map.put("byAges", byAges);
-
-            // convert map to JSON file
+            
             mapper.writeValue(Paths.get("D:\\dataOutput.json").toFile(), map);
 
 
