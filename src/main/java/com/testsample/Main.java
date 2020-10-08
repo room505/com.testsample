@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.*;
@@ -17,7 +16,6 @@ public class Main {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
-//      mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         try {
 
@@ -29,22 +27,27 @@ public class Main {
                     .sorted(Comparator.comparing(p -> p.getLastName() + " " + p.getFirstName()))
                     .collect(Collectors.toList());
             age20to30.forEach(System.out::println);
-            mapper.writeValue(Paths.get("D:\\jsonTest.json").toFile(), age20to30);
-
 
             Set<String> cities = data
                     .stream()
                     .map(Data::getCity)
                     .collect(Collectors.toCollection(TreeSet::new));
             cities.forEach(System.out::println);
-            mapper.writeValue(Paths.get("D:\\jsonTestCiries.json").toFile(), cities);
-
 
             Map<String, Long> byAges = data
                     .stream()
                     .collect(Collectors.groupingBy(Data::getAgeGroup, TreeMap::new, Collectors.counting()));
             System.out.println(byAges);
-            mapper.writeValue(Paths.get("D:\\jsonTestAges.json").toFile(), byAges);
+
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("age20To30", age20to30);
+            map.put("cities", cities);
+            map.put("byAges", byAges);
+
+            // convert map to JSON file
+            mapper.writeValue(Paths.get("D:\\dataOutput.json").toFile(), map);
+
 
         } catch (JsonParseException jsonParseException) {
             jsonParseException.printStackTrace();

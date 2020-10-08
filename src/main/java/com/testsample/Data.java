@@ -1,6 +1,5 @@
 package com.testsample;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -84,6 +83,7 @@ public class Data {
         }
         return (age / 10 * 10 + 1) + ".." + ((age / 10 + 1) * 10);
     }
+
 
     @Override
     public String toString() {
